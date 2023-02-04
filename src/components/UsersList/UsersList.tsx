@@ -21,7 +21,7 @@ interface UsersListProps {
 const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, loadMore, totalResults, query }): JSX.Element => {
     
     if (!query) return (
-        <div>
+        <div className="w-full h-40 flex items-center justify-center">
             Please search for an user
         </div>
     )

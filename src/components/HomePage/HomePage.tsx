@@ -44,12 +44,6 @@ const HomePage = () => {
         setPage(page + 1)
     };
 
-    const handleSearch = (query: string) => {
-        setUsersList([]);
-        setTotalResults(0);
-        setQuery(query);
-    } 
-
     return (
         <div>
             <div className="flex justify-between">
