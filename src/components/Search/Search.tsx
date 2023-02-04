@@ -16,7 +16,7 @@ const Search: React.FC<SearchProps> = ({ handleSearch }): JSX.Element => {
     };
 
     return (
-        <div>
+        <div className="border p-2 border-black">
             <input
                 className=""
                 id="users-search"
