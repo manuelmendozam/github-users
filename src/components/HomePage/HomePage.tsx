@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useQuery } from '@tanstack/react-query'
+import { QueryKey, useQuery } from '@tanstack/react-query'
 
 // Components
 import { Search } from "../Search";
@@ -7,7 +7,7 @@ import { UsersList } from "../UsersList";
 
 // Types
 import { SearchResponse, User } from "../../types";
-import { getSearch, getUsers } from "../../api/request";
+import { getSearch } from "../../api/request";
 
 const HomePage = () => {
     const [page, setPage] = useState<number>(1);
@@ -16,18 +16,22 @@ const HomePage = () => {
     const [error, setError] = useState<string>('');
     const [usersList, setUsersList] = useState<User[]>([]);
 
-    const searchParams = useCallback(() => {
-        if (!query || query == "") return { keys: ['users', `${page}`], fn: getUsers };
-        else return { keys: ['search', query, `${page}`], fn: getSearch };
-    }, [query, page])
-
-    const { isLoading, data } = useQuery(searchParams().keys, searchParams().fn)
+    const { isLoading, data } = useQuery({
+        // @ts-ignore
+        queryKey: ['users', query, `${page}`],
+        queryFn: () => getSearch(page, query),
+        keepPreviousData : true,
+        enabled: !!query && query != ""
+    });
 
     useEffect(() => {
         const response = data as SearchResponse;
+        console.log('data: ', data)
+        console.log('usersList: ', usersList)
         if (response?.errors || response?.message) {
             setError(response?.message || (response?.errors && response?.errors[0]?.code) || 'Unexpected Error');
         } else if (response?.items?.length) {
+            console.log('entroz')
             setUsersList([...usersList, ...response.items]);
             setTotalResults(response.total_count || 0);
         } else {
@@ -37,16 +41,22 @@ const HomePage = () => {
     }, [data]);
 
     const handleLoadMore = () => {
-
+        setPage(page + 1)
     };
+
+    const handleSearch = (query: string) => {
+        setUsersList([]);
+        setTotalResults(0);
+        setQuery(query);
+    } 
 
     return (
         <div>
             <div className="flex justify-between">
                 <h1>Githut Users</h1>
-                <Search setQuery={setQuery} />
+                <Search handleSearch={setQuery} />
             </div>
-            <UsersList usersList={usersList} isLoading={isLoading} error={error} loadMore={handleLoadMore} totalResults={totalResults} />
+            <UsersList usersList={usersList} isLoading={isLoading} query={!!query} error={error} loadMore={handleLoadMore} totalResults={totalResults} />
         </div>
     );
 };

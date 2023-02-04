@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 interface SearchProps {
-    setQuery: Dispatch<SetStateAction<string>>
+    handleSearch: (query: string) => void;
 }
 
-const Search: React.FC<SearchProps> = ({ setQuery }): JSX.Element => {
+const Search: React.FC<SearchProps> = ({ handleSearch }): JSX.Element => {
     const [value, setValue] = useState<string>('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,7 @@ const Search: React.FC<SearchProps> = ({ setQuery }): JSX.Element => {
     };
 
     const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") setQuery(value);
+        if (e.key === "Enter") handleSearch(value);
     };
 
     return (

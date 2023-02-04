@@ -10,11 +10,18 @@ interface UsersListProps {
     usersList: User[];
     isLoading: boolean;
     loadMore: () => void;
-    totalResults?: number;
+    totalResults: number;
+    query: boolean;
     error?: string;
 }
 
-const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, loadMore }): JSX.Element => {
+const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, loadMore, totalResults, query }): JSX.Element => {
+    
+    if (!query) return (
+        <div>
+            Please search for an user
+        </div>
+    )
 
     if (isLoading) return <p>Loading...</p>
 
@@ -28,7 +35,7 @@ const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, load
                 ))
                 : <p>No results</p>
             }
-            <button onClick={loadMore} disabled={usersList.length < 1}>
+            <button onClick={loadMore} disabled={usersList.length < 1 || usersList.length >= totalResults}>
                 Load More
             </button>
         </div>
