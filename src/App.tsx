@@ -1,27 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useCallback } from 'react';
+
+// Libraries
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+// Components
+import Layout from './components/Layout';
+
+// Utils
+import { routes } from './utils/routes';
+
+// Styles
 import './App.css';
 import './tailwind.css';
 
+const queryClient = new QueryClient();
+
 
 const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className='text-orange-500'>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            {routes.map(route => (
+              <Route path={route.path} element={route.component} key={`route-${route.id}`} />
+            ))}
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
