@@ -14,7 +14,7 @@ export const routes: Route[] = [
     {
         id: 'details',
         name: 'User profile',
-        path: '/details',
+        path: '/details/:userLogin',
         component: <UserDetail />
     },
 ]
