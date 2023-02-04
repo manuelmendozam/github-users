@@ -8,9 +8,11 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }): JSX.Element => (
-    <div className="bg-white">
+    <div className="bg-white" >
         <Header />
-        {children}
+        <div className="p-4 container mx-auto" >
+            {children}
+        </div>
     </div>
 );
 
