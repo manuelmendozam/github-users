@@ -10,6 +10,7 @@ interface UsersListProps {
     usersList: User[];
     isLoading: boolean;
     loadMore: () => void;
+    totalResults?: number;
     error?: string;
 }
 
