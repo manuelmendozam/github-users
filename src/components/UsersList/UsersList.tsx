@@ -4,7 +4,10 @@ import React from "react";
 import UserCard from "./UserCard";
 
 // Types
-import { Error, User } from "../../types";
+import { User } from "../../types";
+
+// Controls
+import Button from "../../controls/Button";
 
 interface UsersListProps {
     usersList: User[];
@@ -37,9 +40,9 @@ const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, load
                     : <p>No results</p>
                 }
             </div>
-            <button onClick={loadMore} disabled={usersList.length < 1 || usersList.length >= totalResults}>
+            <Button onClick={loadMore} disabled={usersList.length < 1 || usersList.length >= totalResults}>
                 Load More
-            </button>
+            </Button>
         </div>
     );
 };

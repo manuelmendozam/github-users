@@ -1,9 +1,24 @@
 import React from "react";
 
+// Libraries
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
+
+// Request
 import { getUser } from "../../api/request";
+
+// Types
 import { User } from "../../types";
+
+// Controls
+import Icon from "../../controls/Icon";
+
+// Images
+import github from '../../static/icon-github.png';
+import twitter from '../../static/icon-twitter.png';
+import location from '../../static/icon-location.png';
+import mail from '../../static/icon-mail.png';
+import link from '../../static/icon-link.png';
 
 const UserDetail = () => {
     const { state } = useLocation();
@@ -24,16 +39,18 @@ const UserDetail = () => {
                 <h2>{user.login}</h2>
                 <p>{user.bio}</p>
                 {user.location && <div>
-                    Location
+                    <Icon src={location} alt="location-logo" />
                     <p>{user.location}</p>
                 </div>}
                 {user.email && <div>
-                    Mail
+                    <Icon src={mail} alt="mail-logo" />
                     <p>{user.email}</p>
                 </div>}
             </div>
             <div className="w-5/12" >
-                <a href={user.html_url} target="_blank" rel="nooopener">Go {user.login}</a>
+                <a href={user.html_url} target="_blank" rel="nooopener" className="flex">
+                    <Icon src={github} alt="github-logo" /> {user.login}
+                </a>
                 <div>
                     <div>
                         <span>Repos</span>
@@ -49,11 +66,11 @@ const UserDetail = () => {
                     </div>
                 </div>
                 {user.twitter_username && <div>
-                    Twitter
+                    <Icon src={twitter} alt="twitter-logo" />
                     <p>{user.twitter_username}</p>
                 </div>}
                 {user.blog && <div>
-                    Blog
+                    <Icon src={link} alt="link-logo" />
                     <p>{user.blog}</p>
                 </div>}
             </div>
