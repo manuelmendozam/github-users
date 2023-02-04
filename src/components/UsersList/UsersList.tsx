@@ -28,13 +28,15 @@ const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, load
     if (error) return <p>An error has occurred: {error}</p>
 
     return (
-        <div>
-            {usersList.length > 0
-                ? usersList.map((user: User) => (
-                    <UserCard user={user} key={`user-${user.id}`} />
-                ))
-                : <p>No results</p>
-            }
+        <div className="flex flex-col items-end">
+            <div className="grid grid-cols-3 gap-4 py-8 w-full">
+                {usersList.length > 0
+                    ? usersList.map((user: User) => (
+                        <UserCard user={user} key={`user-${user.id}`} />
+                    ))
+                    : <p>No results</p>
+                }
+            </div>
             <button onClick={loadMore} disabled={usersList.length < 1 || usersList.length >= totalResults}>
                 Load More
             </button>

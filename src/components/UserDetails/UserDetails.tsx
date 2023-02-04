@@ -17,22 +17,22 @@ const UserDetail = () => {
     const user: User = data;
 
     return (
-        <div>
-            <img alt={`user-${user.name}-avatar`} src={user.avatar_url} />
-            <div>
+        <div className="border rounded border-black p-6 flex">
+            <img alt={`user-${user.name}-avatar`} src={user.avatar_url} className="w-2/12 rounded-full mr-8" />
+            <div className="w-5/12" >
                 <h1>{user.name}</h1>
                 <h2>{user.login}</h2>
                 <p>{user.bio}</p>
-                <div>
+                {user.location && <div>
                     Location
                     <p>{user.location}</p>
-                </div>
-                <div>
+                </div>}
+                {user.email && <div>
                     Mail
                     <p>{user.email}</p>
-                </div>
+                </div>}
             </div>
-            <div>
+            <div className="w-5/12" >
                 <a href={user.html_url} target="_blank" rel="nooopener">Go {user.login}</a>
                 <div>
                     <div>
@@ -48,14 +48,14 @@ const UserDetail = () => {
                         <p>{user.following}</p>
                     </div>
                 </div>
-                <div>
+                {user.twitter_username && <div>
                     Twitter
                     <p>{user.twitter_username}</p>
-                </div>
-                <div>
+                </div>}
+                {user.blog && <div>
                     Blog
                     <p>{user.blog}</p>
-                </div>
+                </div>}
             </div>
         </div>
     );
