@@ -14,18 +14,10 @@ interface UsersListProps {
     isLoading: boolean;
     loadMore: () => void;
     totalResults: number;
-    query: boolean;
     error?: string;
 }
 
-const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, loadMore, totalResults, query }): JSX.Element => {
-    
-    if (!query) return (
-        <div className="w-full h-40 flex items-center justify-center">
-            Please search for an user
-        </div>
-    )
-
+const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, loadMore, totalResults }): JSX.Element => {
     if (isLoading) return <p>Loading...</p>
 
     if (error) return <p>An error has occurred: {error}</p>
