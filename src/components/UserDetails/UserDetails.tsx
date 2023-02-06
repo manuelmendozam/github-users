@@ -32,46 +32,46 @@ const UserDetail = () => {
     const user: User = data;
 
     return (
-        <div className="border rounded-3xl border-black px-6 py-12 flex">
-            <div className="w-2/12 p-8">
+        <div className="border rounded-3xl border-gray-300 px-6 py-12 flex">
+            <div className="w-2/12 px-8">
                 <img alt={`user-${user.name}-avatar`} src={user.avatar_url} className="rounded-full mr-8" />
             </div>
-            <div className="w-5/12" >
-                <h1 className="text-5xl mb-8">{user.name}</h1>
+            <div className="w-5/12 pt-8" >
+                <h1 className="text-4xl mb-4">{user.name}</h1>
                 <h2 className="text-2xl mb-6">{user.login}</h2>
-                <p className="text-xl mb-6">{user.bio}</p>
-                {user.location && <div className="flex mb-6">
+                <p className="text-xl mb-12">{user.bio}</p>
+                {user.location && <div className="flex mb-6 items-center">
                     <Icon src={location} alt="location-logo" />
                     <p>{user.location}</p>
                 </div>}
-                {user.email && <div className="flex mb-6">
+                {user.email && <div className="flex mb-6 items-center">
                     <Icon src={mail} alt="mail-logo" />
                     <p>{user.email}</p>
                 </div>}
             </div>
-            <div className="w-5/12" >
-                <a href={user.html_url} target="_blank" rel="nooopener" className="flex">
+            <div className="w-5/12 pt-8" >
+                <a href={user.html_url} target="_blank" rel="nooopener" className="flex items-center">
                     <Icon src={github} alt="github-logo" /> {user.login}
                 </a>
-                <div className="flex p-12 bg-slate-100 rounded-3xl my-6">
-                    <div className="mr-12">
-                        <p className="text-xl mb-4">Repos</p>
-                        <p>{user.public_repos}</p>
+                <div className="grid grid-cols-3 items-center p-4 bg-gray-100 rounded-3xl my-6 w-full md:w-3/4">
+                    <div className="text-center">
+                        <p className="text-md mb-4">Repos</p>
+                        <p className="text-3xl font-medium">{user.public_repos}</p>
                     </div>
-                    <div className="mr-12">
-                        <p className="text-xl mb-4">Followers</p>
-                        <p>{user.followers}</p>
+                    <div className="text-center">
+                        <p className="text-md mb-4">Followers</p>
+                        <p className="text-3xl font-medium">{user.followers}</p>
                     </div>
-                    <div className="mr-12">
-                        <p className="text-xl mb-4">Following</p>
-                        <p>{user.following}</p>
+                    <div className="text-center">
+                        <p className="text-md mb-4">Following</p>
+                        <p className="text-3xl font-medium">{user.following}</p>
                     </div>
                 </div>
-                {user.twitter_username && <div className="flex mb-6">
+                {user.twitter_username && <div className="flex mb-6 items-center">
                     <Icon src={twitter} alt="twitter-logo" />
                     <p>{user.twitter_username}</p>
                 </div>}
-                {user.blog && <div className="flex mb-6">
+                {user.blog && <div className="flex mb-6 items-center">
                     <Icon src={link} alt="link-logo" />
                     <p>{user.blog}</p>
                 </div>}

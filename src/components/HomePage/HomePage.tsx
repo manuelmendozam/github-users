@@ -46,8 +46,8 @@ const HomePage = () => {
 
     return (
         <div>
-            <div className="flex justify-between">
-                <h1>Githut Users</h1>
+            <div className="flex flex-col md:flex-row md:justify-between">
+                <h1 className="text-3xl w-full md:w-8/12 mb-4 md:m-0" >Githut Users</h1>
                 <Search handleSearch={setQuery} />
             </div>
             <UsersList usersList={usersList} isLoading={isLoading} query={!!query} error={error} loadMore={handleLoadMore} totalResults={totalResults} />

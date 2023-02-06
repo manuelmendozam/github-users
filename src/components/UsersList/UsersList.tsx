@@ -32,7 +32,7 @@ const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, load
 
     return (
         <div className="flex flex-col items-end">
-            <div className="grid grid-cols-3 gap-4 py-8 w-full">
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-8 w-full">
                 {usersList.length > 0
                     ? usersList.map((user: User) => (
                         <UserCard user={user} key={`user-${user.id}`} />

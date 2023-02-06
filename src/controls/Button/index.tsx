@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, disabled }): JSX.Ele
     <button
         onClick={onClick}
         disabled={disabled}
-        className="border rounded border-black p-2 hover:bg-black hover:text-white disabled:opacity-50"
+        className="border rounded border-gray-300 py-2 px-6 hover:bg-black hover:text-white disabled:opacity-50"
     >
         {children}
     </button>
