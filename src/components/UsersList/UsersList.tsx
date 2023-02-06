@@ -29,7 +29,9 @@ const UsersList: React.FC<UsersListProps> = ({ usersList, isLoading, error, load
                     ? usersList.map((user: User) => (
                         <UserCard user={user} key={`user-${user.id}`} />
                     ))
-                    : <p>No results</p>
+                    : <div className="w-full h-40 flex items-center justify-center">
+                        No Results
+                    </div>
                 }
             </div>
             <Button onClick={loadMore} disabled={usersList.length < 1 || usersList.length >= totalResults}>

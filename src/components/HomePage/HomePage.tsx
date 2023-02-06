@@ -7,6 +7,8 @@ import { UsersList } from "../UsersList";
 
 // Types
 import { SearchResponse, User } from "../../types";
+
+// Request
 import { getSearch, getUsers } from "../../api/request";
 
 const HomePage = () => {
@@ -37,11 +39,11 @@ const HomePage = () => {
         }
     }, [data]);
 
-    const handleLoadMore = () => {
+    const handleLoadMore = (): void => {
         setPage(page + 1)
     };
 
-    const handleSearch = (query: string) => {
+    const handleSearch = (query: string): void => {
         userListRef.current = [];
         setUsersList([]);
         setTotalResults(0);

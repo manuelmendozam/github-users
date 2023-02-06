@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Images
 import logo from '../../static/logo.png'
 
 const Header: React.FC = (): JSX.Element => (

@@ -1,6 +1,4 @@
 import React from "react";
-
-// Libraries
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 
@@ -20,7 +18,7 @@ import location from '../../static/icon-location.png';
 import mail from '../../static/icon-mail.png';
 import link from '../../static/icon-link.png';
 
-const UserDetail = () => {
+const UserDetail: React.FC = (): JSX.Element  => {
     const { state } = useLocation();
 
     const { isLoading, data } = useQuery([state.userLogin || ''], getUser);

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 
 // Controls
 import Icon from "../../controls/Icon";
@@ -13,11 +13,11 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ handleSearch }): JSX.Element => {
     const [value, setValue] = useState<string>('');
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setValue(e.target.value);
     };
 
-    const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === "Enter") handleSearch(value);
     };
 
